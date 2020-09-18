@@ -1,0 +1,99 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="css/font-awesome.css">
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+        <link rel="stylesheet" href="css/style.css">
+       <link rel="stylesheet" href="jqueryui/jquery-ui.css">
+       <link rel="stylesheet" href="jqueryui/jquery-ui.structure.css">
+       <link rel="stylesheet" href="jqueryui/jquery-ui.theme.css">
+       <link rel="stylesheet" href="jquery.js">
+    </head>
+
+    <body>
+       
+        <style>
+            body{
+                background-image: url('IMG_9151.JPG');
+                background-size: cover;
+            }
+        </style>
+        <div class="head">
+            <h1 style="position: relative; right: -15px;">My To-Do List</h1>
+       
+        </div>
+        
+       
+        <div class="container" >
+
+
+            
+            <div class="addTask">
+                <input type="text" placeholder="Add your Task Here">
+                <button id="bbtn">Add Task</button>
+            </div>
+            <ol class="notCompleted">
+                <h3 style="position: relative; right: -15px;;">List of Incomplete Task</h3>
+            </ol>
+
+            <ol class="Completed">
+                <h3 style="position: relative; right: -15px;">List of Complete Task</h3>   
+            </ol>
+        </div> 
+
+        <script type="text/javascript"></script>
+        <script>
+            
+            const input = document.querySelector('input');
+            const btn = document.querySelector('.addTask > button');
+
+            btn.addEventListener('click',addList);
+            input.addEventListener('keyup',(xx)=> {
+                (xx.keyCode=== 10 ? addList(xx) : null);
+            })
+
+            function addList(xx){
+                
+            const notCompleted = document.querySelector('.notCompleted');
+            const Completed = document.querySelector('.Completed');
+
+            const newLi = document.createElement('li');
+            const addBtn = document.createElement('button');
+            const delBtn = document.createElement('button');
+
+            addBtn.innerHTML = '<i class="fa fa-check"></i>';
+            delBtn.innerHTML = '<i class="fa fa-trash"></i>';
+
+            if(input.value !=='')
+            {
+                newLi.textContent = input.value;
+                input.value = '';
+                notCompleted.appendChild(newLi);
+                newLi.appendChild(addBtn);
+                newLi.appendChild(delBtn);
+            }
+            
+            addBtn.addEventListener('click',function(){
+                const parent = this.parentNode;
+                parent.remove();
+                Completed.appendChild(parent);
+                addBtn.style.display='none';
+            });
+
+            delBtn.addEventListener('click',function(){
+                const parent = this.parentNode;
+                parent.remove();
+               
+            });
+
+
+        }
+
+            
+
+        </script>
+    </body>
+
+</html>
